@@ -21,4 +21,10 @@ def contact_page(request):
         "title": "contact_page",
         "content":"Welcome to contactpage "
     }
-    return render(request,"home_page.html",context)
+    if request.method == "POST":
+        print(request.POST)
+        print(request.POST.get('fullname'))
+        print(request.POST.get('email'))
+        print(request.POST.get('content'))  #here it going to print the data in terminal after submitting
+
+    return render(request,"contact/view.html",context)
