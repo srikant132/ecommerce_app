@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -10,27 +11,32 @@
 
   <title>Hello, world!</title>
 </head>
+
 <body>
 
- <div class="text-center" >
-   <!--    here we pass the context it provide the values here Context variable -->
-   <h1>{{ title }}</h1>
-   <h2>Hello World  we are working here!</h2>
+  <div class="text-center">
+    <!--    here we pass the context it provide the values here Context variable -->
+    <h1>{{ title }}</h1>
+    <h2>Hello World we are working here!</h2>
+  </div>
+  <hr>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+
+        <p>{{ content }}</p>
+
+      </div>
     </div>
-   <hr>
-   <div class="container">
-     <div class="row">
-       <div class="col">
-    <p>{{ content }}</p>
-       </div>
-
-     </div>
-
-   </div>
-
-
-
-   </div>
+{% if  request.user.is_authenticated %}         #it allow to show if the user is authenticated
+  <div class="row">
+    <div class="col">
+      <h1>Premium</h1>
+      <p>{{ premium_content }}</p>
+    </div>
+  </div>
+  {% endif %}
+  </div>
 
 
 
@@ -40,4 +46,5 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
+
 </html>
