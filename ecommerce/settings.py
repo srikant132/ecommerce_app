@@ -118,3 +118,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+#here we are going to specify the static files
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static_my_proj"),
+
+]
+#it's going to serve the file
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_cdn')  #here we add static files related to media
+STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  #this used to save file in media file
+MEDIA_URL = '/media/'
