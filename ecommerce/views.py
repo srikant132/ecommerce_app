@@ -1,7 +1,9 @@
+from django.contrib.auth import authenticate,login
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 
-from .forms import ContactForm          #here  we are importing from forms.py Default django form
+
+from .forms import ContactForm,LoginForm          #here  we are importing from forms.py Default django form
 
 def home_page(request):
     context ={
@@ -33,9 +35,36 @@ def contact_page(request):
     #     print(request.POST.get('content'))  #here it going to print the data in terminal after submitting
 
     return render(request,"contact/view.html",context)
-
+#here we are using the forms.py functionality for login_page
 def login_page(request):
-    return render(request,"auth/login.html",{})
+    form = LoginForm(request.POST or None)
+    context = {
+            "form":form
+        }
+    print("User logged In")
+    print(request.user.is_authenticated())
+    if form.is_valid():
+        print(form.cleaned_data)
+        username =form.cleaned_data.get("username")
+        password =form.cleaned_data.get("password")
+        user = authenticate(request,username=username,password=password)
+        print(request.user.is_authenticated())
+        if user is not None:
+            print(request.user.is_authenticated())
+            login(request,user)
+            #redirect to a success page
+            #context['form'] = LoginForm()
+            return redirect("/login")
+        else:
+            print("Error")
+
+
+    return render(request,"auth/login.html", context)
+
+
 
 def register_page(request):
+    form = LoginForm(request.POST or None)
+    if form.is_valid():
+        print(forms.cleaned_data)
     return render(request,"auth/register.html",{})
