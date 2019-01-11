@@ -64,8 +64,10 @@ class Product(models.Model):
 
 
     objects = ProductManager()
-                                                                              #it's a function that rep of model it's instance field
-                                                                              #it create the product instace different name with their title
+
+    #it create the obsolute url to get product                                                          #it's a function that rep of model it's instance field
+    def get_absolute_url(self):
+        return "/products/{slug}/".format(slug=self.slug)                                                                          #it create the product instace different name with their title
 
     def __str__(self):
         return self.title
