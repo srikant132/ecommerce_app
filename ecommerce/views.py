@@ -28,6 +28,7 @@ def contact_page(request):
         "title": "contact_page",
         "content":"Welcome to contactpage ",
         "form":contact_form
+
     }
     if contact_form.is_valid():
         print(contact_form.cleaned_data)  #it hold the data if there is a problem

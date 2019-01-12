@@ -1,0 +1,33 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="css.html">
+  <title>Base Template</title>
+
+  <!--    it include additional css links files-->
+{% block base_head %} {% endblock %}
+
+  <!--    it include css files-->
+  {% include 'base/css.html' %}
+
+</head>
+
+<body>
+  <!--    it include navbar-->
+  <!-- it include navbar brand_name variable -->
+  {%  include 'base/navbar.html' with brand_name='eCommerce'%}
+
+  {% block content %} {% endblock %}
+
+  <!--    it include js files-->
+    {% include 'base/js.html' %}
+</body>
+
+
+</html>
