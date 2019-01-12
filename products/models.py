@@ -3,6 +3,8 @@ import os
 from django.db import models
 from django.db.models.signals import pre_save, post_save
 from .utils  import  unique_slug_generator
+from django.urls import reverse
+
 
 #here it create the new filename extension
 def get_filename_ext(filepath):
@@ -67,7 +69,9 @@ class Product(models.Model):
 
     #it create the obsolute url to get product                                                          #it's a function that rep of model it's instance field
     def get_absolute_url(self):
-        return "/products/{slug}/".format(slug=self.slug)                                                                          #it create the product instace different name with their title
+        # return "/products/{slug}/".format(slug=self.slug)
+        return reverse("detail",kwargs={"slug":self.slug })               #here we are using  reverse urlutility funcyons
+
 
     def __str__(self):
         return self.title
