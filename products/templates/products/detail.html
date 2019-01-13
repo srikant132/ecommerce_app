@@ -1,16 +1,19 @@
 {% extends "base/base.html" %}
 
 {% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>{{ object.title }} </h1>
+      {{ object.timestamp|timesince }} ago <hr>
+      {{ object.description|linebreaks }}
+      <!-- {{ object.image.url }}    #adding .url gives the actuall path -->
+      {% if object.image %}
+      <img src="{{ object.image.url }} " alt="img-fluid">
 
-    {{ object.title }} <br>
-    {{ object.description }} <br>
-    <!-- {{ object.image.url }}    #adding .url gives the actuall path -->
+      {% endif %}
 
-
-    {% if object.image %}
-
-    <img src="{{ object.image.url }} " alt="img-fluid">
-
-    {% endif %}
-
+    </div>
+  </div>
+</div>
 {% endblock %}

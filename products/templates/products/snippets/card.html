@@ -1,4 +1,5 @@
-<div class="card" style="width: 18rem;">
+
+<div class="card " style="width: 18rem;">
   {% if instance.image %}
   <a href="{{ instance.get_absolute_url }}" class="">
     <img src="{{ instance.image.url }}" class="card-img-top" alt="{{ instance.title }} logo">
@@ -6,8 +7,12 @@
   {% endif %}
   <div class="card-body">
     <h5 class="card-title">{{ instance.title }}</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <p class="card-text">{{ instance.description|linebreaks|truncatewords:15 }}</p>
     <a href="{{ instance.get_absolute_url }}" class="btn btn-primary">View</a>
-    <!-- <a href="{% url 'detail' slug=instance.slug %}" class="btn btn-warning">Url shortcut</a> -->
+    <!-- <a href="{% url 'products:detail' slug=instance.slug %}" class="btn btn-warning">Url shortcut</a> -->
   </div>
-  </div>
+</div>
+
+<!-- 1580508175
+d.o.b  15/10/1988
+r.no   193299007 -->
