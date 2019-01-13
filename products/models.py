@@ -62,7 +62,7 @@ class Product(models.Model):
     image       = models.ImageField(upload_to='upload_image_path',null=True, blank=True)
     featured    = models.BooleanField(default=False)
     active      = models.BooleanField(default=True)
-
+    timestamp   = models.DateTimeField(auto_now_add = True)
 
 
     objects = ProductManager()
@@ -70,7 +70,8 @@ class Product(models.Model):
     #it create the obsolute url to get product                                                          #it's a function that rep of model it's instance field
     def get_absolute_url(self):
         # return "/products/{slug}/".format(slug=self.slug)
-        return reverse("detail",kwargs={"slug":self.slug })               #here we are using  reverse urlutility funcyons
+        return reverse("products:detail",kwargs={"slug":self.slug })
+                                                                                            #here we are using  reverse urlutility funcyons
 
 
     def __str__(self):
