@@ -22,9 +22,10 @@
   <!--    it include navbar-->
   <!-- it include navbar brand_name variable -->
   {%  include 'base/navbar.html' with brand_name='eCommerce'%}
+<div class="container">
 
   {% block content %} {% endblock %}
-
+</div>
   <!--    it include js files-->
     {% include 'base/js.html' %}
 </body>
