@@ -3,9 +3,12 @@ from django.http import HttpResponse
 from django.shortcuts import render,redirect
 
 
+
 from .forms import ContactForm,LoginForm,RegisterForm         #here  we are importing from forms.py Default django form
 
 def home_page(request):
+    # print(request.session.get("first_name","Unknown"))  #getter
+    # #request.session['first_name']
     context ={
         "title": "Hello World!",
         "content": "Welcome to Homepage.",
