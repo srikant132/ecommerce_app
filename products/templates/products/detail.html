@@ -3,17 +3,24 @@
 {% block content %}
 
   <div class="row">
-    <div class="col">
-      <h1>{{ object.title }} </h1>
-      {{ object.timestamp|timesince }} ago <hr>
-      {{ object.description|linebreaks }}
-      <!-- {{ object.image.url }}    #adding .url gives the actuall path -->
-      {% if object.image %}
-      <img src="{{ object.image.url }} " alt="img-fluid">
+    <div class="col-12 col-md-6">
+        <h1>{{ object.title }} </h1>
+        {{ object.timestamp|timesince }} ago <hr>
+        {{ object.description|linebreaks }}
+        <!-- {{ object.image.url }}    #adding .url gives the actuall path -->
+        {% if object.image %}
+        <img src="{{ object.image.url }} " alt="img-fluid">
 
-      {% endif %}
-
+        {% endif %}
     </div>
+    <div class="col-12 col-md-6">
+      {% if object in cart.products.all %}
+         In Cart <button class="btn btn-link">Remove</button>
+      {% else %}
+       <button class="btn btn-success">Add to Cart</button>
+      {% endif %}
+    </div>
+
   </div>
 
 {% endblock %}
