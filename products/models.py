@@ -42,7 +42,7 @@ class ProductQuerySet(models.query.QuerySet):
          lookups = (Q(title__icontains=query) |
                     Q(description__icontains=query) |
                     Q(price__icontains=query) |
-                    Q(tag__title__icontains=query) 
+                    Q(tag__title__icontains=query)
                     )
 
          return self.filter(lookups).distinct()
@@ -96,6 +96,11 @@ class Product(models.Model):
 
     def __unicode__(self):
         return self.title
+
+    @property
+    def name(self):
+        return self.title
+
 #here we are generating slug
 def product_pre_save_receiver(sender,instance,*args,**kwargs):
     if not instance.slug:
