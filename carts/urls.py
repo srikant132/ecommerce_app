@@ -1,10 +1,9 @@
 from django.conf.urls import url
 
 
-from carts.views import (    cart_home,
-                             cart_update,
-                             checkout_home,
-
+from carts.views import(   cart_home,
+                           cart_update,
+                           checkout_home,
                          )
 
 urlpatterns = [
