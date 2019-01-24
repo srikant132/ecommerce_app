@@ -6,6 +6,27 @@ from django.core.urlresolvers import reverse
 User = settings.AUTH_USER_MODEL
 # Create your models here.
 
+class BillingProfileManager(models.Manager):
+    def new_or_get(self,request):
+        user = request.user
+        guest_email_id = request.session.get('guest_email_id')
+        created = False
+        obj = None
+        if user.is_authenticated():
+            'logged in user checkout; remember payment stuff'
+            obj,created = self.model.objects.get_or_create(
+                                                        user=user,email=user.email)
+
+        elif guest_email_id is  not None:
+            'guest  user checkout; auto reload payment stuff'
+            guest_email_obj = GuestEmail.objects.get(id=guest_email_id)
+            obj,created = self.model.objects.get_or_create(
+                                                               user=user,email=guest_email_obj.email)
+
+        else:
+            pass
+        return obj,created
+
 class BillingProfile(models.Model):
     user       = models.OneToOneField(User, null=True, blank=True)
     email      = models.EmailField()
@@ -13,6 +34,8 @@ class BillingProfile(models.Model):
     update     = models.DateTimeField(auto_now = True)
     timestamp  = models.DateTimeField(auto_now_add = True)
 
+
+    objects = BillingProfileManager()
 
     def __str__(self):
         return self.email
