@@ -21,14 +21,16 @@ from django.contrib import admin
 from django.contrib.auth.views import LogoutView
 from django.views.generic import TemplateView
 
+from addresses.views import Checkout_address_create_view
 from accounts.views import login_page,register_page,guest_register_view
-from . views import home_page,about_page,contact_page    #this need to import after creating views
+from .views import home_page,about_page,contact_page    #this need to import after creating views
 
 urlpatterns = [
     url(r'^$', home_page,name='home'),
     url(r'^about/$', about_page,name='about'),
     url(r'^contact/$', contact_page,name='contact'),
     url(r'^login/$', login_page,name='login'),
+    url(r'^Checkout/address/create/$',Checkout_address_create_view,name='Checkout_address_create'),
     url(r'^register/guest/$',guest_register_view,name='guest_register'),
     url(r'^logout/$', LogoutView.as_view(),name='logout'),
     url(r'^cart/', include("carts.urls", namespace='cart')),
